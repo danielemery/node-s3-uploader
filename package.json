@@ -1,0 +1,15 @@
+{
+  "name": "node-s3-uploader",
+  "version": "0.0.1",
+  "description": "Node command line tool to upload a directory and its sub-directories to aws s3",
+  "main": "index.js",
+  "repository": "https://github.com/danielemery/node-s3-uploader.git",
+  "author": "Daniel Emery <danielremery@gmail.com>",
+  "license": "Apache-2.0",
+  "private": false,
+  "dependencies": {
+    "aws-cli": "^0.0.2",
+    "mime-types": "^2.1.18",
+    "yargs": "^11.0.0"
+  }
+}
