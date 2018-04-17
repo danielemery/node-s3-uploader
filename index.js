@@ -5,6 +5,12 @@ const mime = require('mime-types');
 const argv = require('yargs')
     .usage('Usage: $0 <directory> <bucket>')
     .demandCommand(2)
+    .option('c', {
+        describe: 'specify cache control for specified file in seconds, example index.html:60',
+        type: 'string',
+        alias: 'cache'
+    })
+    .help('h')
     .argv;
 
 let directoryName = argv._[0];
@@ -44,6 +50,13 @@ const processFile = (fileName) => {
     if(type) {
         params.ContentType = type;
     };
+
+    if(argv.cache) {
+        let parts = argv.cache.split(':');
+        if(basePath === parts[0]) {
+            params.CacheControl = `max-age=${parts[1]}`;
+        }
+    }
 
     s3.putObject(params, (err, result) => {
         if(err) {
